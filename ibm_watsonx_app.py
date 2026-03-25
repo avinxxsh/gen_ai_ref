@@ -12,7 +12,7 @@ params = {
     GenTextParamsMetaNames.MAX_NEW_TOKENS: 100
 }
 
-model_id = 'ibm/granite-3-3-8b-instruct'
+model_id = 'meta-llama/llama-4-maverick-17b-128e-instruct-fp8'
 
 model = ModelInference(
     model_id = model_id,
@@ -21,8 +21,14 @@ model = ModelInference(
     project_id = 'skills-network'
     )
 
-text = """
-Only reply with the answer. What is the capital of Canada?
+text = text = """
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are an expert assistant who provides concise and accurate answers.<|eot_id|>
+
+<|start_header_id|>user<|end_header_id|>
+What is the capital of Canada?<|eot_id|>
+
+<|start_header_id|>assistant<|end_header_id|>
 """
 
 print(model.generate(text)['results'][0]['generated_text'])
